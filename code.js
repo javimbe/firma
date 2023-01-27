@@ -48,9 +48,10 @@ canvas.addEventListener("mouseup",(event)=>{
 
 canvas.addEventListener("touchstart", (event)=>{
 
-    let x = event.clientX;
-    let y = event.clientY;
+    let x = event.targetTouches[0].pageX;
+    let y = event.targetTouches[0].pageY;
 
+    ctx.beginPath();
     ctx.moveTo(x-window.innerWidth*15/100, y-window.innerHeight*10/100);
     control = true;
 
@@ -62,8 +63,8 @@ canvas.addEventListener("touchmove", (event)=>{
 
     if(control){
 
-        let x = event.clientX;
-        let y = event.clientY;
+        let x = event.targetTouches[0].pageX;
+        let y = event.targetTouches[0].pageY;
 
         ctx.lineTo(x-window.innerWidth*15/100, y-window.innerHeight*10/100);
         ctx.stroke();
