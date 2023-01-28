@@ -4,6 +4,8 @@ canvas.height = window.innerHeight*60/100;
 
 var ctx = canvas.getContext("2d");
 
+var download = document.getElementById("download");
+
 var control = false;
 
 document.addEventListener("mousedown", ()=>{
@@ -77,9 +79,20 @@ canvas.addEventListener("touchend",()=>{
     control = false;
 },false);
 
+
+
 function borrar () {
 
     ctx.clearRect(0,0,canvas.width,canvas.height);
 
 
 }
+
+download.addEventListener("click", ()=>{
+    
+    var imgData = canvas.toDataURL("image/jpg", 1.0);
+    var pdf = new jsPDF("l");
+
+    pdf.addImage(imgData, 'JPEG', 0, 0);
+    pdf.save("download.pdf");
+},false);
